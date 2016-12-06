@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <style>
-    html,body,form{
+    html,body,#app,form{
       width: 100%;
       height: 100%;
       font-family: Lato;
@@ -28,7 +28,7 @@
       padding: 0;
     }
 
-    .drag-here{
+    .drop-here{
       width: 150px;
       height: 150px;
       display: flex;
@@ -40,28 +40,215 @@
     }
 
     input{
-      width: 300px;
-      height: 30px;
+      width: 200px;
+      height: 14px;
       background: #fff;
       border: solid 1px #e5e5e5;
       margin-bottom: 25px;
+      font-family: Lato;
+      font-weight: 600;
+      border-radius: 0 2px 2px 0 / 0 2px 2px 0;
+      outline: none;
+    }
+
+    .processing{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #555;
+      font-weight: 600;
+      font-size: 60px;
+    }
+
+    .progress{
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .loader {
+      color: #cbcbcb;
+      font-size: 20px;
+      margin: 100px auto;
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      position: relative;
+      text-indent: -9999em;
+      -webkit-animation: load4 1.3s infinite linear;
+      animation: load4 1.3s infinite linear;
+      -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+    @-webkit-keyframes load4 {
+      0%,
+      100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+      }
+      12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+      }
+      25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+      }
+      37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+      }
+      50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+      }
+      62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+      }
+      75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+      }
+      87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+      }
+    }
+    @keyframes load4 {
+      0%,
+      100% {
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+      }
+      12.5% {
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+      }
+      25% {
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+      }
+      37.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+      }
+      50% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+      }
+      62.5% {
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+      }
+      75% {
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+      }
+      87.5% {
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+      }
     }
 
     </style>
   </head>
   <body>
-    <form>
-      <h1>S3 Byoudeageruyatsu</h1>
+    <div id="app">
+      <form v-on:submit.prevent="upload" v-on:dragover="dragover" v-on:drop="drop" v-if="!isProcessing">
+        <h1>S3 Byoudeageruyatsu</h1>
 
-      <div class="drag-here">
-        Image drop here.
+        <div class="drop-here">
+          Image drop here.
+        </div>
+
+        <div class="inputs">
+          <select v-model="bucket">
+            <option value="unselected">バケットを選択</option>
+            <option value="storage.potato4d.me">storage.potato4d.me/</option>
+          </select>
+          <input v-model="path" class="path" placeholder="path/to/">
+
+          <button type="submit" style="display:none;"></button>
+        </div>
+      </form>
+
+      <div class="processing" v-else>
+        <div class="loader" v-if="now != max"></div>
+        <div style="font-size:100px;color:#388E67;margin: 50px 50px 75px;" v-else>✓</div>
+        <p class="progress" v-if="now != max">ファイルをアップロードしています……<br>{{now}}/{{max}}ファイル</p>
+        <p class="progress" v-else>アップロードが完了しました</p>
       </div>
+    </div>
 
-      <input type="text" placeholder="PATH: e.g. '/images/category/1/'">
-      <script>
-        // You can also require other files to run in this process
-        require('./renderer.js')
-      </script>
-    </form>
+    <script>
+
+      const AWS = require('aws-sdk');
+      const s3 = new AWS.S3();
+      const $ = e=>document.querySelector(e);
+      const Vue = require("vue/dist/vue.common.js");
+
+      new Vue({
+        el: "#app",
+        data: ()=>{
+          return {
+            bucket: "unselected",
+            path: "",
+            files: undefined,
+            cueue: {},
+            isProcessing: false,
+            now: 0,
+            max: 0
+          }
+        },
+        watch: {
+          now: function(v){
+            if(v == this.max){
+              setTimeout(()=>{
+                this.isProcessing = false;
+              }, 1500);
+            }
+          }
+        },
+        methods: {
+          dragover(e){
+            e.stopPropagation();
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'copy';
+          },
+          drop(e){
+            e.stopPropagation();
+            e.preventDefault();
+            this.files = e.dataTransfer.files;
+            $("button").click();
+          },
+          upload(){
+            if(this.bucket == "unselected"){
+              alert("バケットを選択してください");
+              return false;
+            }
+            this.max = this.files.length;
+            this.now = 0;
+            this.cueue = {};
+            this.isProcessing = true;
+
+            for(const file of this.files){
+              this.cueue[file.name] = this.file;
+              console.log(file.name + " やってる");
+              const fileReader = new FileReader();
+              fileReader.onloadend = (event)=>{
+                s3.putObject(
+                  {
+                    Bucket      : this.bucket,
+                    Key         : `${this.path}${file.name}`,
+                    Body        : event.target.result,
+                    ContentType : file.type
+                  },
+                  (err, data) => {
+                    if(!err){
+                      console.log(file.name + " いけた");
+                      this.now++;
+                    }else{
+                      console.log(file.name + " いけてない");
+                      console.log(err);
+                      alert("エラーが発生しました。");
+                    }
+                  }
+                )
+              };
+              this.cueue[file.name] = null;
+              fileReader.readAsDataURL(file);
+            }
+          }
+        }
+      });
+    </script>
   </body>
 </html>
