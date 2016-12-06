@@ -9,6 +9,7 @@
       height: 100%;
       font-family: Lato;
       margin: 0;
+      -webkit-font-smoothing: antialiased;
     }
 
     form{
@@ -145,7 +146,7 @@
   <body>
     <div id="app">
       <form v-on:submit.prevent="upload" v-on:dragover="dragover" v-on:drop="drop" v-if="!isProcessing">
-        <h1>S3 Byoudeageruyatsu<span style="font-size:10px"><br>(秒で上げるやつ)</span></h1>
+        <h1>Kajiki S3 Upload</span></h1>
 
         <div class="drop-here">
           Image drop here.
@@ -153,8 +154,7 @@
 
         <div class="inputs">
           <select v-model="bucket">
-            <option value="unselected" v-if="buckets.length">バケットを選択</option>
-            <option value="unselected" v-else>バケット一覧を取得中……</option>
+            <option value="unselected">バケット{{ buckets.length ? "を選択" : "一覧を取得中…" }}</option>
             <option v-for="b in buckets" :value="b">{{b}}</option>
           </select>
           <input v-model="path" class="path" placeholder="path/to/">
@@ -171,94 +171,6 @@
       </div>
     </div>
 
-    <script>
-
-      const AWS = require('aws-sdk');
-      const s3 = new AWS.S3();
-      const $ = e=>document.querySelector(e);
-      const Vue = require("vue/dist/vue.common.js");
-
-      s3.listBuckets((err, data)=>{
-        data.Buckets.map((b)=>{
-          App.buckets.push(b.Name);
-        })
-      });
-
-      const App = new Vue({
-        el: "#app",
-        data: ()=>{
-          return {
-            buckets: [],
-            bucket: "unselected",
-            path: "",
-            files: undefined,
-            cueue: {},
-            isProcessing: false,
-            now: 0,
-            max: 0
-          }
-        },
-        watch: {
-          now: function(v){
-            if(v == this.max){
-              setTimeout(()=>{
-                this.isProcessing = false;
-              }, 1500);
-            }
-          }
-        },
-        methods: {
-          dragover(e){
-            e.stopPropagation();
-            e.preventDefault();
-            e.dataTransfer.dropEffect = 'copy';
-          },
-          drop(e){
-            e.stopPropagation();
-            e.preventDefault();
-            this.files = e.dataTransfer.files;
-            $("button").click();
-          },
-          upload(){
-            if(this.bucket == "unselected"){
-              alert("バケットを選択してください");
-              return false;
-            }
-            this.max = this.files.length;
-            this.now = 0;
-            this.cueue = {};
-            this.isProcessing = true;
-
-            for(const file of this.files){
-              this.cueue[file.name] = this.file;
-              console.log(file.name + " やってる");
-              const fileReader = new FileReader();
-              fileReader.onloadend = (event)=>{
-                s3.putObject(
-                  {
-                    Bucket      : this.bucket,
-                    Key         : `${this.path}${file.name}`,
-                    Body        : event.target.result,
-                    ContentType : file.type
-                  },
-                  (err, data) => {
-                    if(!err){
-                      console.log(file.name + " いけた");
-                      this.now++;
-                    }else{
-                      console.log(file.name + " いけてない");
-                      console.log(err);
-                      alert("エラーが発生しました。");
-                    }
-                  }
-                )
-              };
-              this.cueue[file.name] = null;
-              fileReader.readAsDataURL(file);
-            }
-          }
-        }
-      });
-    </script>
+    <script src="./index.js"></script>
   </body>
 </html>
