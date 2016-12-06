@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>S3 Byoudeageruyatsu</title>
     <style>
-    html,body,#app,form{
+    html, body, #app, form{
       width: 100%;
       height: 100%;
       font-family: Lato;
@@ -26,6 +26,8 @@
     h1{
       margin: 25px 0 0;
       padding: 0;
+      line-height: 0.8;
+      text-align: center;
     }
 
     .drop-here{
@@ -143,7 +145,7 @@
   <body>
     <div id="app">
       <form v-on:submit.prevent="upload" v-on:dragover="dragover" v-on:drop="drop" v-if="!isProcessing">
-        <h1>S3 Byoudeageruyatsu</h1>
+        <h1>S3 Byoudeageruyatsu<span style="font-size:10px"><br>(秒で上げるやつ)</span></h1>
 
         <div class="drop-here">
           Image drop here.
@@ -151,8 +153,9 @@
 
         <div class="inputs">
           <select v-model="bucket">
-            <option value="unselected">バケットを選択</option>
-            <option value="storage.potato4d.me">storage.potato4d.me/</option>
+            <option value="unselected" v-if="buckets.length">バケットを選択</option>
+            <option value="unselected" v-else>バケット一覧を取得中……</option>
+            <option v-for="b in buckets" :value="b">{{b}}</option>
           </select>
           <input v-model="path" class="path" placeholder="path/to/">
 
@@ -175,10 +178,17 @@
       const $ = e=>document.querySelector(e);
       const Vue = require("vue/dist/vue.common.js");
 
-      new Vue({
+      s3.listBuckets((err, data)=>{
+        data.Buckets.map((b)=>{
+          App.buckets.push(b.Name);
+        })
+      });
+
+      const App = new Vue({
         el: "#app",
         data: ()=>{
           return {
+            buckets: [],
             bucket: "unselected",
             path: "",
             files: undefined,
