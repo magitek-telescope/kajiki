@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.png">
+  <title>Kajiki - Easy, simple and fast S3 uploader.</title>
+  <style>
+  html, body{
+    margin: 0;
+    padding: 0;
+    font-family: Lato, Hiragino Sans;
+    color: #0B7CDF;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html{
+    width: 100%;
+    height: 100%;
+  }
+
+  body{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+  }
+
+  main{
+    width: 100%;
+    min-height: calc(100vh - 30px);
+    background: #fff;
+    text-align: center;
+  }
+
+  header{
+    position: relative;
+    width: 100%;
+    padding: 20px 0;
+
+    color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(#3BB4EA, #0B7CDF);
+  }
+
+  h1{
+    margin: 0;
+    padding: 0;
+  }
+
+  .tagline{
+    margin: 20px 0;
+  }
+
+  footer{
+    width: 100%;
+    height: 30px;
+    color: #0B7CDF;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+
+    font-size: 12px;
+  }
+
+  footer a{
+    color: #0B7CDF;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  a.button{
+    width: 180px;
+    height: 40px;
+
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+
+    text-decoration: none;
+    margin: 10px auto 10px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease-out;
+
+    background: transparent;
+    border: solid 1px #fff;
+
+    border-radius: 3px;
+  }
+
+  a.button:hover{
+    box-shadow: 0 0px 4px rgba(0,0,0,0.2);
+  }
+
+  .steps{
+    width: 1150px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    list-style: none;
+  }
+
+  .step .step-text{
+    font-size: 14px;
+  }
+
+  .step-image{
+    max-width: calc(30vw);
+    margin: 10px;
+  }
+
+  .content-description{
+    font-size: 20px;
+    padding: 30px 0;
+    margin: 0;
+  }
+
+  .buy-modal{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    opacity: 0.0;
+    pointer-events: none;
+
+    transition: opacity 0.3s ease-out;
+  }
+
+  .buy-modal.active{
+    opacity: 1.0;
+    pointer-events: auto;
+  }
+
+  .buy-modal-body{
+    transform: translateY(80vh);
+    transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  .active .buy-modal-body{
+    transform: translateY(0vh);
+  }
+
+  .buy-modal-background{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+
+    content: "";
+
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+  }
+
+  .buy-modal-body{
+    z-index: 10000;
+    margin: 30px auto;
+
+    width: 510px;
+  }
+
+  .content{
+    width: 100%;
+  }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="icon.png" alt="kajiki-icon" width="150" class="logo">
+      <h1><span class="appname">Kajiki</span></h1>
+      <p class="tagline">Easy, simple and fast S3 uploader.</p>
+      <a href="#" class="button download-button" target="_blank">Download for macOS</a>
+    </header>
+
+    <div class="content">
+      <p class="content-description">Provide fast upload with drag-and-drop and file path structure.</p>
+      <ol class="steps">
+        <li class="step">
+          <img class="step-image" src="screenshot_01.png" alt="" width="350">
+          <p class="step-text">1. Select target S3 bucket.</p>
+        </li>
+
+        <li class="step">
+          <img class="step-image" src="screenshot_02.png" alt="" width="350">
+          <p class="step-text">2. Enter upload file path.</p>
+        </li>
+
+        <li class="step">
+          <img class="step-image" src="screenshot_03.png" alt="" width="350">
+          <p class="step-text">3. Drag and drop upload files.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="buy-modal">
+      <div class="buy-modal-background"></div>
+      <div class="buy-modal-body">
+        <script src="https://gumroad.com/js/gumroad-embed.js"></script>
+        <div class="gumroad-product-embed" data-gumroad-product-id="aevWG"><a href="https://gumroad.com/l/aevWG">ローディング中・・・</a></div>
+      </div>
+    </div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="potato4d">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </main>
+
+  <footer>
+    created by&nbsp;<a href="https://twitter.com/potato4d" target="_blank">@potato4d</a>
+  </footer>
+
+  <script>
+    var $ = function(e){
+      return document.querySelector(e);
+    }
+
+    $(".download-button").addEventListener("click", function(e){
+      e.preventDefault();
+      $(".buy-modal").classList.add("active");
+      return false;
+    });
+
+    $(".buy-modal-background").addEventListener("click", function(e){
+      $(".buy-modal").classList.remove("active");
+    });
+  </script>
+
+  <script>
+  </script>
+</body>
+</html>
