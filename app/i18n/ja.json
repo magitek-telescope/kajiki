@@ -6,5 +6,7 @@
   "Complete!": "アップロード完了",
   "Access Key": "IAMキー",
   "Secret Key": "シークレットキー",
-  "Save": "認証情報を保存"
+  "Save": "認証情報を保存",
+  "Please choose bucket.": "バケットを選択してください。",
+  "Error.": "エラーが発生しました。"
 }

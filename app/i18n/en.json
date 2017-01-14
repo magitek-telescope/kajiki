@@ -6,5 +6,7 @@
   "Complete!": "Complete!",
   "Access Key": "Access Key",
   "Secret Key": "Secret Key",
-  "Save": "save"
+  "Save": "save",
+  "Please choose bucket.": "Please choose bucket.",
+  "Error.": "Error."
 }

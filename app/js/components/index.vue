@@ -220,7 +220,6 @@ module.exports = {
       const iam = require("../service/iam");
       const iamData = iam.getIam();
 
-      console.log(iamData);
       if(!iamData.key || !iamData.secret){
         this.$router.push("/settings");
         return;
@@ -255,7 +254,7 @@ module.exports = {
     },
     upload(){
       if(this.bucket == "unselected"){
-        alert("バケットを選択してください");
+        alert(this.__("Please choose bucket."));
         return false;
       }
       this.max = this.files.length;
@@ -268,8 +267,6 @@ module.exports = {
         console.log(file.name + " やってる");
         const fileReader = new FileReader();
         fileReader.onloadend = (event)=>{
-          console.log(file.type);
-          console.log(event);
           this.s3.putObject(
             {
               Bucket      : this.bucket,
@@ -279,12 +276,10 @@ module.exports = {
             },
             (err, data) => {
               if(!err){
-                console.log(file.name + " いけた");
                 this.now++;
               }else{
-                console.log(file.name + " いけてない");
                 console.log(err);
-                alert("エラーが発生しました。");
+                alert(this.__("Error."));
               }
             }
           )
