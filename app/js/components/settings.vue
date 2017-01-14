@@ -1,5 +1,5 @@
 <template lang="html">
-  <form class="main" v-on:submit="save">
+  <form class="main" v-on:submit.prevent="save">
     <p>
       <span>{{__("Access Key")}}</span><br>
       <input v-model="key">
