@@ -214,7 +214,6 @@ module.exports = {
   },
   methods: {
     __(word){
-      console.log(i18n);
       return i18n.__(word);
     },
     initialize(){
