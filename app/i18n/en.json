@@ -8,5 +8,6 @@
   "Secret Key": "Secret Key",
   "Save": "save",
   "Please choose bucket.": "Please choose bucket.",
-  "Error.": "Error."
+  "Error.": "Error.",
+  "Fail connect": "Failed to connect to the server.\nPlease check the network and AWS Credentials file."
 }

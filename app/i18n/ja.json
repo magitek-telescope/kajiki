@@ -8,5 +8,6 @@
   "Secret Key": "シークレットキー",
   "Save": "認証情報を保存",
   "Please choose bucket.": "バケットを選択してください。",
-  "Error.": "エラーが発生しました。"
+  "Error.": "エラーが発生しました。",
+  "Fail connect": "サーバーへの接続に失敗しました。\nネット環境及びAWSのCredentialsファイルの有無を確認してください。"
 }

@@ -233,7 +233,7 @@ module.exports = {
       this.s3.listBuckets((err, data)=>{
         if(err){
           console.log(err);
-          alert("サーバーへの接続に失敗しました。\nネット環境及びAWSのCredentialsファイルの有無を確認してください。");
+          alert(this.__("Fail connect"));
           return;
         }
         data.Buckets.map((b)=>{
