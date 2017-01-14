@@ -15,7 +15,3 @@
 aws_access_key_id = YOUR_ACCESS_KEY
 aws_secret_access_key = YOUR_ACCESS_SECRET
 ```
-
-## Remarks
-
-誰かアイコン作って
