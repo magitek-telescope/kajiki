@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="shortcut icon" href="icon.png">
   <title>Kajiki - Easy, simple and fast S3 uploader.</title>
+  <link rel="stylesheet" href="grid.css">
   <style>
   html, body{
     margin: 0;
@@ -12,6 +13,28 @@
     font-family: Lato, Hiragino Sans;
     color: #0B7CDF;
     -webkit-font-smoothing: antialiased;
+  }
+
+  .row{
+    width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .row p{
+    letter-spacing: 0.1em;
+    line-height: 1.9;
+    margin-top: 2em;
+    margin-bottom: 3em;
+  }
+
+  .row h2{
+    font-weight: 300;
+    margin-left: 0;
+    padding-left: 0;
+    transform: translateX(-3px);
   }
 
   html{
@@ -107,30 +130,20 @@
     box-shadow: 0 0px 4px rgba(0,0,0,0.2);
   }
 
-  .steps{
-    width: 1150px;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    list-style: none;
-  }
-
-  .step .step-text{
-    font-size: 14px;
-  }
-
-  .step-image{
-    max-width: calc(30vw);
-    margin: 10px;
+  .button.button-footer{
+    color: #0B7CDF;
+    border: solid 1px #0B7CDF;
   }
 
   .content-description{
-    font-size: 20px;
-    padding: 30px 0;
+    font-size: 28px;
+    font-weight: 200;
+    padding: 20px 0 50px;
     margin: 0;
+  }
+
+  .row-image{
+    margin: 26px;
   }
 
   .buy-modal{
@@ -188,6 +201,7 @@
 
   .content{
     width: 100%;
+    padding-top: 30px;
   }
   </style>
 </head>
@@ -196,28 +210,49 @@
     <header>
       <img src="icon.png" alt="kajiki-icon" width="150" class="logo">
       <h1><span class="appname">Kajiki</span></h1>
-      <p class="tagline">Easy, simple and fast S3 uploader.</p>
-      <a href="#" class="button download-button" target="_blank">Download for macOS</a>
+      <p class="tagline">簡単でわかりやすく、かつ高速なS3アップローダー</p>
+      <a href="#" class="button download-button button-header" target="_blank">Download for macOS</a>
     </header>
 
     <div class="content">
-      <p class="content-description">Provide fast upload with drag-and-drop and file path structure.</p>
-      <ol class="steps">
-        <li class="step">
-          <img class="step-image" src="screenshot_01.png" alt="" width="350">
-          <p class="step-text">1. Select target S3 bucket.</p>
-        </li>
+      <h2 class="content-description">ドラッグアンドドロップによる快適なアップロードが可能</h2>
+      <div class="row">
+        <div class="col-sm-5">
+          <img class="row-image" src="image01.png" alt="" width="350">
+        </div>
 
-        <li class="step">
-          <img class="step-image" src="screenshot_02.png" alt="" width="350">
-          <p class="step-text">2. Enter upload file path.</p>
-        </li>
+        <div class="col-sm-7">
+          <h2>どんなクライアントよりも素早く、わかりやすく。</h2>
 
-        <li class="step">
-          <img class="step-image" src="screenshot_03.png" alt="" width="350">
-          <p class="step-text">3. Drag and drop upload files.</p>
-        </li>
-      </ol>
+          <p>
+            Kajikiは、あらゆるデータを何よりも素早く共有することを目的として設計されています。
+          </p>
+
+          <p>
+            ファイルシステムのパス構造を用いたインターフェースによって、GUIのファイルマネージャー特有の煩雑さから解き放たれながらも、ドラッグアンドドロップでのアップロード専用とすることで、視覚的なファイル選択を可能にしています。
+          </p>
+        </div>
+      </div>
+
+      <h2 class="content-description">高速かつセキュアなデータ転送</h2>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <img class="row-image" src="image01.png" alt="" width="350">
+        </div>
+
+        <div class="col-sm-7">
+          <h2>信頼と速度、両方を担保します。</h2>
+
+          <p>
+            Kajikiは外部に独自のサーバーを持たない設計となっているため、Amazon Web Service上の認証情報は、Amazon公式のシステムを介してのみ通信され、漏洩に関するリスクを最小限に抑えた状態でのデータ転送が可能です。
+          </p>
+
+          <p>
+            また、その性質により、ファイル転送を中継するサーバーがなく、高速で快適なアップロードが可能となっています。
+          </p>
+        </div>
+      </div>
     </div>
 
     <div class="buy-modal">
@@ -228,7 +263,13 @@
       </div>
     </div>
 
-    <a href="https://twitter.com/share" class="twitter-share-button" data-via="potato4d">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <p>
+      <a href="#" class="button download-button button-footer" target="_blank">Download for macOS</a>
+    </p>
+
+    <p style="margin:50px;">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="potato4d">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </p>
   </main>
 
   <footer>
@@ -240,7 +281,13 @@
       return document.querySelector(e);
     }
 
-    $(".download-button").addEventListener("click", function(e){
+    $(".button-header").addEventListener("click", function(e){
+      e.preventDefault();
+      $(".buy-modal").classList.add("active");
+      return false;
+    });
+
+    $(".button-footer").addEventListener("click", function(e){
       e.preventDefault();
       $(".buy-modal").classList.add("active");
       return false;
